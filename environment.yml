@@ -1,0 +1,5 @@
+name: housing
+channels:
+  - defaults
+prefix: /home/max/anaconda3/envs/housing
+
