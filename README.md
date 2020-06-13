@@ -1,3 +1,5 @@
+### THIS PROJECT IS CURRENTLY IN PROGRESS
+
 # Table of Contents
 
 <!--ts-->
@@ -33,9 +35,9 @@
  - [system requirements]
  - [presentation.pdf]
  - [final summary notebook]
- - [exploratory notebooks folder]
- - [src folder]
- - [references]
+ - [exploratory notebooks folder](https://github.com/chum46/mod2_housing_sales/tree/master/notebooks/exploratory)
+ - [src folder](https://github.com/chum46/mod2_housing_sales/tree/master/src)
+ - [references](https://github.com/chum46/mod2_housing_sales/tree/master/references)
  
 # General Setup Instructions 
 
