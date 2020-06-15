@@ -100,9 +100,7 @@ def lr_normality (fsm):
 
     Linear regression assumes that the residuals are normally distributed. It is possible to check
     this qualitatively with a Q-Q plot. The fit model object has an attribute called resid, which is
-    an array of the difference between predicted and true values. Store the residuals in the variable
-    below, show the qq plot, and interepret. You are looking for the theoretical quantiles and the
-    sample quantiles to line up.
+    an array of the difference between predicted and true values. 
 
     This function performs a qq plot and returns the residuals
     example call: fsm_normality = lr_qq (fsm)
@@ -118,8 +116,7 @@ def lr_homoscad(fsm):
     3. Homoscadasticity
 
     Linear regression assumes that the variance of the dependent variable is homogeneous across
-    different values of the independent variable(s). We can visualize this by looking at the predicted
-    life expectancy vs. the residuals.
+    different values of the independent variable(s).
     """
     fsm_resids = fsm.resid
     y_hat = fsm.predict()
