@@ -48,81 +48,85 @@ def df_corr (df):
     return pos_corr, neg_corr
 
 
-def  (dfall):
+def get_fsm (df):
     """
     FSM with Statsmodels
+    how to call this function: fsm = get_fsm(df)
+    - df argument should have target as first column 
+    and features in the following columns
+    - all column names should be strings
+
+    returns fsm data and a print out of the summary, 
+    rsquared and beta values for each feature
     """
-    return none
+    from statsmodels.formula.api import ols
+    columns = list(df.columns)
+    target = columns[0]
+    features = columns[1:]
+    features = '+'.join(features)
+    formula = "{}~{}".format(target,features)
+    fsm = ols(formula=formula, data=df).fit()
+    rsquared = fsm.rsquared
+    params = fsm.params
+    print(f'Rsquared: {rsquared}')
+    print('BETA values:')
+    print(params)
+    print('------------------------------------')
+    print(' ')
+    print(fsm.summary())
+    return fsm
 
 
-def lr_linear (dfall):
+def lr_linear (fsm):
     """
     Check the assumptions of Linear Regression
     1. Linearity
 
     Linear regression assumes that the input variable linearly predicts the output variable. We already
     qualitatively checked that with a scatter plot. But it's also a good idea to use a statistical test.
+    
     This one is the Rainbow test which is available from the diagnostic submodule of StatsModels
     """
-    return none
+    from statsmodels.stats.diagnostic import linear_rainbow, het_breuschpagan
+    from statsmodels.stats.outliers_influence import variance_inflation_factor
+    rainbow_statistic, rainbow_p_value = linear_rainbow(fsm)
+    print("Rainbow statistic:", rainbow_statistic)
+    print("Rainbow p-value:", rainbow_p_value)
+    return rainbow_statistic,rainbow_p_value
 
-def lr_normality (dfall):
+def lr_normality (fsm):
     """
     2. Normality
 
     Linear regression assumes that the residuals are normally distributed. It is possible to check
     this qualitatively with a Q-Q plot. The fit model object has an attribute called resid, which is
-    an array of the difference between predicted and true values. Store the residuals in the variable
-    below, show the qq plot, and interepret. You are looking for the theoretical quantiles and the
-    sample quantiles to line up.
-    """
-    return none
+    an array of the difference between predicted and true values. 
 
-def lr_homoscad(dfall):
+    This function performs a qq plot and returns the residuals
+    example call: fsm_normality = lr_qq (fsm)
+    """
+    fsm_resids = fsm.resid
+    import statsmodels.api as sm
+    sm.qqplot(fsm_resids)
+    return fsm_resids
+
+
+def lr_homoscad(fsm):
     """
     3. Homoscadasticity
 
     Linear regression assumes that the variance of the dependent variable is homogeneous across
-    different values of the independent variable(s). We can visualize this by looking at the predicted
-    life expectancy vs. the residuals.
+    different values of the independent variable(s).
     """
-    return none
+    fsm_resids = fsm.resid
+    y_hat = fsm.predict()
+    fig, ax = plt.subplots()
+    ax.scatter(y_hat, fsm_resids)
 
-def lr_independence (dfall):
+def lr_independence ():
     """
     4. Independence
 
     The independence assumption means that the independent variables must not be too collinear. Right
     now we have only one independent variable, so we don't need to check this yet.
     """
-    return none
-
-
-def best_line(X, Y):
-    """This function plots the best-fit line for a group of datapoints broken into
-    a set of independent variable values (X) and a set of dependent variable values (Y)"""
-    import numpy as np
-    from matplotlib import pyplot as plt
-    
-    X_bar = np.mean(X)
-    Y_bar = np.mean(Y)
-    
-    X_diffs = np.asarray([i - X_bar for i in X])
-    Y_diffs = np.asarray([i - Y_bar for i in Y])
-    
-    num = X_diffs.dot(Y_diffs)
-    
-    denom = np.sqrt((X_diffs ** 2).sum() * (Y_diffs ** 2).sum())
-    
-    r_pearson = num / denom
-    
-    beta_1 = r_pearson * Y_diffs.std() / X_diffs.std()
-    
-    beta_0 = Y_bar - beta_1 * X_bar
-    
-    Xs = np.linspace(np.min(X), np.max(X), 100)
-    Ys = beta_1 * Xs + beta_0
-    plt.plot(X, Y, 'ro', label='datapoints')
-    plt.plot(Xs, Ys, 'k', label=f'y={round(beta_1, 2)}x+{round(beta_0, 2)}')
-    plt.legend()
-    plt.show();
