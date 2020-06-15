@@ -113,7 +113,7 @@ def lr_normality (fsm):
     return fsm_resids
 
 
-def lr_homoscad(dfall):
+def lr_homoscad(fsm):
     """
     3. Homoscadasticity
 
