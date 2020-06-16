@@ -6,14 +6,14 @@ from scipy import stats
 from matplotlib import pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from random import gauss
-from lin_reg import best_line
-%matplotlib inline
+from statsmodels.stats.diagnostic import linear_rainbow, het_breuschpagan
+from statsmodels.stats.outliers_influence import variance_inflation_factor
 
 
-def df_corr (df):
+def df_corr (df, th):
     """
-    This function takes in a dataframe where the first column is the target 
-    (dependent variable) and the rest are features to be analyzed. 
+    This function takes in a dataframe and correlation threshold where the 
+    first column is the target (dependent variable) and the rest are features to be analyzed. 
     We are looking for variables that are highly correlated with the target 
     variable.
     Returns a list of positively correlated variables and a list of 
@@ -21,7 +21,7 @@ def df_corr (df):
     and prints the results.
     """
     import seaborn as sns
-    sns.set(rc={'figure.figsize':(8, 8)})
+    sns.set(rc={'figure.figsize':(15, 15)})
     mask = np.triu(np.ones_like(df.corr(), dtype=np.bool))
     sns.heatmap(df.corr(), mask=mask);
     corrMatrix = df.corr()
@@ -32,19 +32,21 @@ def df_corr (df):
     pos_corr = []
     print ("POSITIVE CORRELATIONS:")
     for j in range(1, cols):
-        if corr[0,j] > 0.5:
+        if corr[0,j] > th:
             print ('     ', flds[0], ' ', flds[j], ' ', corr[0,j])
             pos_corr.append(flds[j])
     print ("NEGATIVE CORRELATIONS:")
     for j in range(1, cols):
-        if corr[0,j] < -0.5:
+        if corr[0,j] < -th:
             print ('     ', flds[0], ' ', flds[j], ' ', corr[0,j])
             neg_corr.append(flds[j])
     # Pair Plots
     df_pos = df[pos_corr]
     df_neg = df[neg_corr]
-    sns.pairplot(df_pos)
-    sns.pairplot(df_neg)
+    if pos_corr:
+        sns.pairplot(df_pos)
+    if neg_corr:
+        sns.pairplot(df_neg)
     return pos_corr, neg_corr
 
 
@@ -76,23 +78,20 @@ def get_fsm (df):
     print(fsm.summary())
     return fsm
 
-
 def lr_linear (fsm):
     """
-    Check the assumptions of Linear Regression
     1. Linearity
 
     Linear regression assumes that the input variable linearly predicts the output variable. We already
-    qualitatively checked that with a scatter plot. But it's also a good idea to use a statistical test.
+    qualitatively checked that with the scatter plots, but it's also a good idea to use a statistical test.
     
     This one is the Rainbow test which is available from the diagnostic submodule of StatsModels
     """
-    from statsmodels.stats.diagnostic import linear_rainbow, het_breuschpagan
-    from statsmodels.stats.outliers_influence import variance_inflation_factor
     rainbow_statistic, rainbow_p_value = linear_rainbow(fsm)
     print("Rainbow statistic:", rainbow_statistic)
     print("Rainbow p-value:", rainbow_p_value)
     return rainbow_statistic,rainbow_p_value
+
 
 def lr_normality (fsm):
     """
@@ -102,16 +101,15 @@ def lr_normality (fsm):
     this qualitatively with a Q-Q plot. The fit model object has an attribute called resid, which is
     an array of the difference between predicted and true values. 
 
-    This function performs a qq plot and returns the residuals
-    example call: fsm_normality = lr_qq (fsm)
+    This function performs a qq plot
     """
     fsm_resids = fsm.resid
     import statsmodels.api as sm
     sm.qqplot(fsm_resids)
-    return fsm_resids
+    return 
 
 
-def lr_homoscad(fsm):
+def lr_homoscad(fsm, df):
     """
     Test Homoscadasticity: Use the predict() method now available to be called from the fsm variable to store the predictions
     """
@@ -119,13 +117,20 @@ def lr_homoscad(fsm):
     y_hat = fsm.predict()
     fig, ax = plt.subplots()
     ax.scatter(y_hat, fsm_resids)
+    y = df.iloc[:,0]
+    lm, lm_p_value, fvalue, f_p_value = het_breuschpagan(y-y_hat, df.iloc[:, 1:])
+    print("Lagrange Multiplier p-value:", lm_p_value)
+    print("F-statistic p-value:", f_p_value)
+    print("\n")
+    print("The null hypothesis is homoscedasticity, alternative hypothesis is heteroscedasticity.\
+    Thus returning a low p-value means that the current model violates the homoscedasticity assumption")
+    
 
 def lr_independence (df):
     """
     4. Independence
 
-    The independence assumption means that the independent variables must not be too collinear. Right
-    now we have only one independent variable, so we don't need to check this yet.
+    The independence assumption means that the independent variables must not be too collinear.
     """
     from statsmodels.stats.outliers_influence import variance_inflation_factor
     rows = df.iloc[:, 1:].values
