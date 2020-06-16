@@ -111,7 +111,7 @@ def lr_normality (fsm):
 
 def lr_homoscad(fsm, df):
     """
-    Test Homoscadasticity: 
+    Test Homoscadasticity: Use the predict() method now available to be called from the fsm variable to store the predictions
     """
     fsm_resids = fsm.resid
     y_hat = fsm.predict()
@@ -135,7 +135,7 @@ def lr_independence (df):
     from statsmodels.stats.outliers_influence import variance_inflation_factor
     rows = df.iloc[:, 1:].values
     vif_df = pd.DataFrame()
-    vif_df["VIF"] = [variance_inflation_factor(rows, i) for i in range(len(df.columns)-1)]
+    vif_df["VIF"] = [variance_inflation_factor(rows, i) for i in      range(len(df.columns)-1)]
     vif_df["feature"] = list(df.columns[1:])
     print(vif_df) 
     print("\n")
