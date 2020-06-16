@@ -113,20 +113,25 @@ def lr_normality (fsm):
 
 def lr_homoscad(fsm):
     """
-    3. Homoscadasticity
-
-    Linear regression assumes that the variance of the dependent variable is homogeneous across
-    different values of the independent variable(s).
+    Test Homoscadasticity: Use the predict() method now available to be called from the fsm variable to store the predictions
     """
     fsm_resids = fsm.resid
     y_hat = fsm.predict()
     fig, ax = plt.subplots()
     ax.scatter(y_hat, fsm_resids)
 
-def lr_independence ():
+def lr_independence (df):
     """
     4. Independence
 
     The independence assumption means that the independent variables must not be too collinear. Right
     now we have only one independent variable, so we don't need to check this yet.
     """
+    from statsmodels.stats.outliers_influence import variance_inflation_factor
+    rows = df.iloc[:, 1:].values
+    vif_df = pd.DataFrame()
+    vif_df["VIF"] = [variance_inflation_factor(rows, i) for i in      range(len(df.columns)-1)]
+    vif_df["feature"] = list(df.columns[1:])
+    print(vif_df) 
+    print("\n")
+    print("VIF needs to be smaller than 5.")
