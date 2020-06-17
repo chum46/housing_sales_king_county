@@ -49,8 +49,8 @@ def add_PIN_column(df):
     df['Minor'] = df['Minor'].apply(lambda elem: elem.rjust(4, '0'))
     
     #create pin column
-    df['PIN'] = df['Major'] + df['Minor']
-    
+    PIN = df['Major'] + df['Minor']
+    df['PIN'] = PIN
     return df
 
 def filter_data_by_PIN(original_df):
