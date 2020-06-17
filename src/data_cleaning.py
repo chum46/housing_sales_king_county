@@ -66,3 +66,17 @@ def filter_data_by_PIN(original_df):
     else:
         df = add_PIN_column(original_df)
         return df.join(PINS, how='inner', on='PIN')
+    
+    
+def import_sales(path):
+    """
+    input: path to final filtered rp_sales data
+    output: sales with outliers removed by z_score
+    """
+    #import data
+    sale=pd.read_csv(path,dtype={'PIN':'string'})
+    #remove outliers
+    z = np.abs(stats.zscore(sale.SalePrice))
+    no_outliers = sale[z < 3]
+    
+    return no_outliers
