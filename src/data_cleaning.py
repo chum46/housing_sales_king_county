@@ -66,3 +66,12 @@ def filter_data_by_PIN(original_df):
     else:
         df = add_PIN_column(original_df)
         return df.join(PINS, how='inner', on='PIN')
+    
+    def LU_item(df,number):
+        """ 
+    Put in name of your Look up data frame then description number and it will use this Data frame.     
+    To give the values associated with it and its descriptions from least to greatest.
+    """
+    
+    lu_list=df[df["LUType"]== number]
+    return lu_list.sort_values("LUItem", ascending=True)
