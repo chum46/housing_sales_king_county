@@ -22,7 +22,7 @@
 │   ├── exploratory
 │   │   ├── 02_cm_download_and_explore_data.ipynb
 │   └── report
-│       └── 
+│       └── 00_final_report_and_summary
 ├── references
 │   └── 
 ├── reports
@@ -34,7 +34,7 @@
 #### Repo Navigation Links
  - [system requirements]
  - [presentation.pdf]
- - [final summary notebook]
+ - [final summary notebook](https://github.com/chum46/mod2_housing_sales/tree/master/notebooks/report/00_final_report_and_summary)
  - [exploratory notebooks folder](https://github.com/chum46/mod2_housing_sales/tree/master/notebooks/exploratory)
  - [src folder](https://github.com/chum46/mod2_housing_sales/tree/master/src)
  - [references](https://github.com/chum46/mod2_housing_sales/tree/master/references)
@@ -57,23 +57,25 @@ python -m ipykernel install --user --name housing --display-name "Python 3 (hous
 
 # Context of Project
 
+This project is aimed to help homeowners and potential homeowners in King County understand how specific features affect home sale prices in the area. The data we will use can be downloaded from here: https://info.kingcounty.gov/assessor/DataDownload/default.aspx. Through our analysis our end goal is to build a statistical model that is representative of the real world data.
 
-#### Source: 
+The following questions are addressed:
+
+1. Does higher square footage increase home sale price?
+2. Does having a porch increases home sale price?
+3. Does having a waterfront increase home sale prices?
+4. Does the presence of a nuisance (power lines, traffic noise, airport noise) lower home sale prices?
+5. Using this data, can a statistical model be built that accurately represents housing prices in King County?
 
 
 # Preview of Results
-
 WIP
 
 # Data
-
+WIP
 
 # Process
-### Business Understanding
-### Data Understanding
-### Data Preparation
-### Modeling
-### Evaluation
+WIP
 
 # Results
 
@@ -81,5 +83,9 @@ WIP
 
 
 # Application
+
+WIP
+
+# Next Steps
 
 WIP
