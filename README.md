@@ -34,7 +34,7 @@
 #### Repo Navigation Links
  - [system requirements]
  - [presentation.pdf]
- - [final summary notebook](https://github.com/chum46/mod2_housing_sales/tree/master/notebooks/report/00_final_report_and_summary)
+ - [final summary notebook](https://github.com/chum46/mod2_housing_sales/blob/master/notebooks/report/00_final_report_and_summary.ipynb)
  - [exploratory notebooks folder](https://github.com/chum46/mod2_housing_sales/tree/master/notebooks/exploratory)
  - [src folder](https://github.com/chum46/mod2_housing_sales/tree/master/src)
  - [references](https://github.com/chum46/mod2_housing_sales/tree/master/references)
