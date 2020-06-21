@@ -3,36 +3,45 @@
 # Table of Contents
 
 <!--ts-->
- * [Files and Folders of Note]
- * [General Setup Instructions]
- * [Context of Project]
- * [Preview of Results]
- * [Data]
- * [Process]
- * [Results]
+ * [Files and Folders of Note](https://github.com/chum46/mod2_housing_sales#files-and-folders-of-note)
+ * [General Setup Instructions](https://github.com/chum46/mod2_housing_sales#general-setup-instructions)
+ * [Context of Project](https://github.com/chum46/mod2_housing_sales#context-of-project)
+ * [Preview of Results](https://github.com/chum46/mod2_housing_sales#preview-of-results)
+ * [Data](https://github.com/chum46/mod2_housing_sales#data)
+ * [Process](https://github.com/chum46/mod2_housing_sales#process)
+ * [Results](https://github.com/chum46/mod2_housing_sales#results)
  * [Strengths and Limitations]
- * [Real World Application]
+ * [Real World Application](https://github.com/chum46/mod2_housing_sales#application)
+ * [Next Steps](https://github.com/chum46/mod2_housing_sales#next-steps)
 <!--te-->
 
 # Files and Folders of Note
 ```
 .
-├── README.md
-├── notebooks
-│   ├── exploratory
-│   │   ├── 02_cm_download_and_explore_data.ipynb
-│   └── report
-│       └── 00_final_report_and_summary
-├── references
-│   └── 
-├── reports
-│   └── figures
-│       └── 
-└── src
-    └── cm_functions.py
-    |
-    └── data_cleaning.py
-    
+└── mod2_housing_sales
+    ├── README.md
+    ├── notebooks
+    │   ├── exploratory
+    │   │   ├── 00_mef_initial_data_cleaning.ipynb
+    │   │   ├── 02_cm_download_and_explore_data.ipynb
+    │   │   ├── 02_js_2experimenting\ models.ipynb
+    │   │   ├── 02_js_Lookup\ info.ipynb
+    │   │   ├── 02_js_Zero_explanation.ipynb
+    │   │   ├── 02_js_experimenting\ models.ipynb
+    │   │   ├── 02_js_exploratory_Visualizations.ipynb
+    │   │   ├── 02_js_exploratory_question_2.ipynb
+    │   │   ├── 02_js_exploratory_questions_1.ipynb
+    │   │   └── 03_mef_noise_correlation.ipynb
+    │   └── report
+    │       └── 00_final_report_and_summary.ipynb
+    ├── references
+    │   └── README.md
+    ├── reports
+    │   ├── README.md
+    │   └── figures
+    └── src
+        ├── cm_functions.py
+        └── data_cleaning.py
 ```
 #### Repo Navigation Links
  - [system requirements]
@@ -85,7 +94,7 @@ WIP
 
 # Process
 2. Does having a porch increases home sale price?
-To adress this business question we had to craft the neccesary dataframes that would shows us the values pertaining to residences with a porch. This was done by residential building dataframe and finding all value columns values that pertain to a porch and create a data frame that matched that criteria. The same ideology was used to make a dataframe that consisted of residences without a porch. After, both dataframes were made they were then joined on the "PIN" column found within all dataframes created in prior section. The means of the mean sale price of the porch and no-porch data frames were taken and then plotted against one another.
+To address this business question we had to craft the neccesary dataframes that would shows us the values pertaining to residences with a porch. This was done by residential building dataframe and finding all value columns values that pertain to a porch and create a data frame that matched that criteria. The same ideology was used to make a dataframe that consisted of residences without a porch. After, both dataframes were made they were then joined on the "PIN" column found within all dataframes created in prior section. The means of the mean sale price of the porch and no-porch data frames were taken and then plotted against one another.
 # Results
 When looking at the correlation bewtween sale price and porch there seems to be a correlation between the two. Properties that have a porch on avergae sold for a higher price than those that did not. There also seemd to minute linear correaltion between the target variable(SalePruce) and the feature(porches).  
 
