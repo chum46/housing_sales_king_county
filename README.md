@@ -30,6 +30,9 @@
 │       └── 
 └── src
     └── cm_functions.py
+    |
+    └── data_cleaning.py
+    
 ```
 #### Repo Navigation Links
  - [system requirements]
@@ -69,18 +72,20 @@ The following questions are addressed:
 
 
 # Preview of Results
-WIP
+![Porch Bargraph](notebooks/exploratory/GPorch.png)
+
+### Figure 1. 
+We can see there is about a 200,000 difference in home Sale Price when a home has a porch addition. Showing houses with a porch on average have a higher over all value.
+
 
 # Data
 WIP
 
 # Process
-WIP
-
+2. Does having a porch increases home sale price?
+To adress this business question we had to craft the neccesary dataframes that would shows us the values pertaining to residences with a porch. This was done by residential building dataframe and finding all value columns values that pertain to a porch and create a data frame that matched that criteria. The same ideology was used to make a dataframe that consisted of residences without a porch. After, both dataframes were made they were then joined on the "PIN" column found within all dataframes created in prior section. The means of the mean sale price of the porch and no-porch data frames were taken and then plotted against one another.
 # Results
-
-WIP
-
+When looking at the correlation bewtween sale price and porch there seems to be a correlation between the two. Properties that have a porch on avergae sold for a higher price than those that did not. There also seemd to minute linear correaltion between the target variable(SalePruce) and the feature(porches).  
 
 # Application
 
@@ -88,4 +93,4 @@ WIP
 
 # Next Steps
 
-WIP
+When it comes to analyzing the the significance of the porch data we can delve deeper into making a stronger correlation. Also, when looking at the square footage of a closed versus open porch there may be some correlations to sale price. Given time I beleive this could yield fruitful results. 
