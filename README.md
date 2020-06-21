@@ -60,7 +60,7 @@ python -m ipykernel install --user --name housing --display-name "Python 3 (hous
 
 # Context of Project
 
-This project is aimed to help homeowners and potential homeowners in King County understand how specific features affect home sale prices in the area. The data we will use can be downloaded from here: https://info.kingcounty.gov/assessor/DataDownload/default.aspx. Through our analysis our end goal is to build a statistical model that is representative of the real world data.
+This project is aimed to help homeowners and potential homeowners in King County understand how specific features affect home sale prices in the area. The data we will use can be downloaded from [here](https://info.kingcounty.gov/assessor/DataDownload/default.aspx). Through our analysis our end goal is to build a statistical model that is representative of the real world data.
 
 The following questions are addressed:
 
@@ -72,10 +72,12 @@ The following questions are addressed:
 
 
 # Preview of Results
+
+# Not sure if this goes here or what kind of preview they want.
 ![Porch Bargraph](notebooks/exploratory/GPorch.png)
 
-### Figure 1. 
-We can see there is about a 200,000 difference in home Sale Price when a home has a porch addition. Showing houses with a porch on average have a higher over all value.
+## Figure 1. 
+### We can see there is about a 200,000 difference in home Sale Price when a home has a porch addition. Showing houses with a porch on average have a higher over all value.
 
 
 # Data
