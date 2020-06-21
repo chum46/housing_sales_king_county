@@ -88,7 +88,21 @@ We can see there is about a 200,000 difference in home Sale Price when a home ha
 
 
 # Data
-WIP
+Because the scope of this project is limited to only homes sold in King County, all of the data used in this project can be downloaded for free from the King County Assessors website. Here are the set up instructions so that you will have all the data required for the project's jupyter notebooks.
+
+1. Download the following files place them in the repositories 'data' folder.
+    - Real Property Sales: [Download](https://aqua.kingcounty.gov/extranet/assessor/Real%20Property%20Sales.zip)
+     - Contains all sales info including sales price and sale reasons.
+    - Residential Buildings: [Download](https://aqua.kingcounty.gov/extranet/assessor/Residential%20Building.zip)
+     - Contains all building info including square footage, bathroom counts, etc.
+    - Parcels: [Download](https://aqua.kingcounty.gov/extranet/assessor/Parcel.zip)
+     - Contains information regarding the plots of land including waterfront access.
+    - LookUp Codes: [Download](https://aqua.kingcounty.gov/extranet/assessor/Lookup.zip)
+     - Contains the dictionary used for interpretting the values of the csv files. Use in conjunction with the data documents found in this projects references folder.
+2. Once these files are in the data folder, extract them all in the projects data folder. 
+    - As long as you have the four respective .csv files, you may now remove the original zip files or delete them.
+3. For additional data sets, as well as all available documentation, visit this [link](https://info.kingcounty.gov/assessor/DataDownload/default.aspx) and accept the agreement to view all available data.
+
 
 # Process
 2. Does having a porch increases home sale price?
