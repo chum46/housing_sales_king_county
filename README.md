@@ -9,7 +9,7 @@
  * [Preview of Results](https://github.com/chum46/mod2_housing_sales#preview-of-results)
  * [Data](https://github.com/chum46/mod2_housing_sales#data)
  * [Process](https://github.com/chum46/mod2_housing_sales#process)
- * [Results](https://github.com/chum46/mod2_housing_sales#results
+ * [Results](https://github.com/chum46/mod2_housing_sales#results)
  * [Strengths and Limitations]
  * [Real World Application](https://github.com/chum46/mod2_housing_sales#application)
  * [Next Steps](https://github.com/chum46/mod2_housing_sales#next-steps)
