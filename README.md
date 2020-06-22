@@ -94,24 +94,24 @@ We can see there is about a 200,000 difference in home Sale Price when a home ha
 ![](./reports/figures/is_wfnt_boxplot.png)
 ##### Figure 3. 
 Since the median value is higher for waterfront property there is evidence that the industry claim is true.
+
 4. Does the presence of a nuisance (power lines, traffic noise, airport noise) lower home sale prices?
 We examined three main nuisances that were hypothesized to effect home value:
 
-* Airport noise
-We examined three main nuisances that were hypothesized to effect home value:
-- Airport noise
+*Airport noise*
  - We found no entries in our data for homes that suffered from airport noise, so we could not examine this claim.
 
-- Traffic noise
+*Traffic noise*
  - We found very little difference between home sale values of homes with or without verying levels of traffic noise. 
  - We did find that homes with extreme traffic noise did have much lower sale value, but this was deemed statistically insignificant and could be due to the extremely small sample size. 
  - There did seem to be a sizeable group of low valued homes that suffered from traffic noise of all levels, which warrants further investigation.
 
-- Power lines
+*Power lines*
  - Despite a small sample size, we did find a statistically significant difference in mean sale values for homes with or without power line related nuisances. This shift was around $100,000.
 
-- All nuisances
+*All nuisances*
  - We combined the extreme traffic noise subset witht he power line subset and found that this diminished the statistical significance of any difference.
+
 5. Using this data, can a statistical model be built that accurately represents housing prices in King County?
 ![](./reports/figures/qq_plot.png)
 ##### Figure 4. 
