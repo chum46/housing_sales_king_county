@@ -18,6 +18,7 @@
 ```
 .
 ├── README.md
+├── data
 ├── notebooks
 │   ├── exploratory
 │   │   ├── 02_cm_download_and_explore_data.ipynb
