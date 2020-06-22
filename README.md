@@ -44,7 +44,6 @@
     └── data_cleaning.py
 ```
 #### Repo Navigation Links
- - [system requirements]
  - [presentation.pdf](https://github.com/chum46/mod2_housing_sales/blob/master/reports/Mod2_Presentation.pdf)
  - [final summary notebook](https://github.com/chum46/mod2_housing_sales/blob/master/notebooks/report/00_final_report_and_summary.ipynb)
  - [exploratory notebooks folder](https://github.com/chum46/mod2_housing_sales/tree/master/notebooks/exploratory)
@@ -82,11 +81,41 @@ The following questions are addressed:
 
 # Preview of Results
 
-# Not sure if this goes here or what kind of preview they want.
-![Porch Bargraph](notebooks/exploratory/GPorch.png)
+1. Does higher square footage increase home sale price?
+![](./reports/figures/reg_plot.png)
+##### Figure 1. 
+Yes there is evidence of a linear, positive correlation between sqare footage and home sale price.
+2. Does having a porch increases home sale price?
+![](./reports/figures/GPorch.png)
+##### Figure 2. 
+We can see there is about a 200,000 difference in home Sale Price when a home has a porch addition. Showing houses with a porch on average have a higher over all value.
 
-## Figure 1. 
-### We can see there is about a 200,000 difference in home Sale Price when a home has a porch addition. Showing houses with a porch on average have a higher over all value.
+3. Does having a waterfront increase home sale prices?
+![](./reports/figures/is_wfnt_boxplot.png)
+##### Figure 3. 
+Since the median value is higher for waterfront property there is evidence that the industry claim is true.
+4. Does the presence of a nuisance (power lines, traffic noise, airport noise) lower home sale prices?
+We examined three main nuisances that were hypothesized to effect home value:
+
+* Airport noise
+We examined three main nuisances that were hypothesized to effect home value:
+- Airport noise
+ - We found no entries in our data for homes that suffered from airport noise, so we could not examine this claim.
+
+- Traffic noise
+ - We found very little difference between home sale values of homes with or without verying levels of traffic noise. 
+ - We did find that homes with extreme traffic noise did have much lower sale value, but this was deemed statistically insignificant and could be due to the extremely small sample size. 
+ - There did seem to be a sizeable group of low valued homes that suffered from traffic noise of all levels, which warrants further investigation.
+
+- Power lines
+ - Despite a small sample size, we did find a statistically significant difference in mean sale values for homes with or without power line related nuisances. This shift was around $100,000.
+
+- All nuisances
+ - We combined the extreme traffic noise subset witht he power line subset and found that this diminished the statistical significance of any difference.
+5. Using this data, can a statistical model be built that accurately represents housing prices in King County?
+![](./reports/figures/qq_plot.png)
+##### Figure 4. 
+Our statistical model was able to be constructed, meeting assumption checks. This qq plot shows evidence that our errors were independent of each other. 
 
 
 # Data
@@ -165,12 +194,12 @@ From this figure we can see there is about a 200,000 difference in home Sale Pri
 
 To address this business question we had to craft the neccesary dataframes that would shows us the values pertaining to residences with a porch. This was done by residential building dataframe and finding all value columns values that pertain to a porch and create a data frame that matched that criteria. The same ideology was used to make a dataframe that consisted of residences without a porch. After, both dataframes were made they were then joined on the "PIN" column found within all dataframes created in prior section. The means of the mean sale price of the porch and no-porch data frames were taken and then plotted against one another.
 
-![Porch Bargraph](reports/figures/GPorch.png)
+##### Figure 1 above
 
 ## b. Waterfront
 ### Findings
 The boxplot below shows that in 2019 homes that had a waterfront had a median value of about $342,500.00 higher than homes that did not have one. For a breakdown and step by step process on how we created this plot, check out the waterfront analysis notebook.
-![Waterfront Boxplot](reports/figures/is_wfnt_boxplot.png)
+![Waterfront Boxplot](./reports/figures/is_wfnt_boxplot.png)
 
 ## c. Nuisances
 ### Findings
