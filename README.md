@@ -1,5 +1,3 @@
-### THIS PROJECT IS CURRENTLY IN PROGRESS
-
 # Table of Contents
 
 <!--ts-->
