@@ -194,12 +194,12 @@ From this figure we can see there is about a 200,000 difference in home Sale Pri
 
 To address this business question we had to craft the neccesary dataframes that would shows us the values pertaining to residences with a porch. This was done by residential building dataframe and finding all value columns values that pertain to a porch and create a data frame that matched that criteria. The same ideology was used to make a dataframe that consisted of residences without a porch. After, both dataframes were made they were then joined on the "PIN" column found within all dataframes created in prior section. The means of the mean sale price of the porch and no-porch data frames were taken and then plotted against one another.
 
-##### Figure 1 above
+##### Figure 2 above
 
 ## b. Waterfront
 ### Findings
 The boxplot below shows that in 2019 homes that had a waterfront had a median value of about $342,500.00 higher than homes that did not have one. For a breakdown and step by step process on how we created this plot, check out the waterfront analysis notebook.
-![Waterfront Boxplot](./reports/figures/is_wfnt_boxplot.png)
+##### Figure 3 above
 
 ## c. Nuisances
 ### Findings
@@ -209,6 +209,9 @@ Homes that do not suffer from power line nuisances are worth $96393.27 more than
 When looking at the correlation between sale price and porch there seems to be a correlation between the two. Properties that have a porch on average sold for a higher price than those that did not. There also seemed to minute linear correlation between the target variable(SalePrice) and the feature(porches).  
 
 # 4. Final Model
+
+
+##### Figure 4 above
 
 # Application
 
