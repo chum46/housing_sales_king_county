@@ -213,10 +213,7 @@ The boxplot below shows that in 2019 homes that had a waterfront had a median va
 
 ## c. Nuisances
 ### Findings
-Homes that do not suffer from power line nuisances are worth $96393.27 more than homes that do suffer from power line nuisances. Other nuisances were found to have a far smaller effect on sale price. For instance, traffic noise had very little effect.
-
-# Results
-When looking at the correlation between sale price and porch there seems to be a correlation between the two. Properties that have a porch on average sold for a higher price than those that did not. There also seemed to minute linear correlation between the target variable(SalePrice) and the feature(porches).  
+Homes that do not suffer from power line nuisances are worth $96393.27 more than homes that do suffer from power line nuisances. Other nuisances were found to have a far smaller effect on sale price. For instance, traffic noise had very little effect. 
 
 # 4. Final Model
 
@@ -254,9 +251,12 @@ We want to make sure that the variance of our residuals is the same across our d
 
 Our VIF tests showed our independent variables were not dependant on each other with a VIF score of below 5 on each. 
 
+# Results
+Our final model passed all but the normality of errors assumption with an rsquared of .368
+
 # Application
 
-Because our model generally meets the assumptions needed for a linear regression model, this model shows evidence that a representative model of 2019 King County Housing sales could possibly be constructed through further feature engineering and an improved R squared value. Were you to use this model to get a home price using the feature data of the listing, you could compare this theoretical price to the actual list price or sale price to see whether it might have been undervalued or overvalued. 
+Because our model is close to meeting the assumptions needed for a linear regression model, this model shows evidence that a representative model of 2019 King County Housing sales could possibly be constructed through further feature engineering and an improved R squared value. Were you to use this model to get a home price using the feature data of the listing, you could compare this theoretical price to the actual list price or sale price to see whether it might have been undervalued or overvalued. 
 
 # Next Steps
 
