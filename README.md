@@ -94,6 +94,7 @@ The following questions are addressed:
 ![](./reports/figures/reg_plot.png)
 ##### Figure 1. 
 Yes there is evidence of a linear, positive correlation between sqare footage and home sale price.
+
 2. Does having a porch increases home sale price?
 ![](./reports/figures/GPorch.png)
 ##### Figure 2. 
