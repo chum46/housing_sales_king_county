@@ -7,4 +7,4 @@ The factors that influence housing prices interest many people, from homeowners 
 
 [Matplotlib Documentation](https://matplotlib.org/)
 
-[Click this link to gain more insight into Deed types](https://thismatter.com/money/real-estate/deed-types.htm)
+[Information pertaining to PIN Values](https://www5.kingcounty.gov/sdc/Metadata.aspx?Layer=parcel#AttributeInfo)
