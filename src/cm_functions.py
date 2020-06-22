@@ -13,12 +13,13 @@ from statsmodels.stats.outliers_influence import variance_inflation_factor
 def df_corr (df, th):
     """
     This function takes in a dataframe and correlation threshold where the 
-    first column is the target (dependent variable) and the rest are features to be analyzed. 
+    first column is the target (dependent variable) and the rest are features to be analyzed
+    in a linear regression or multiple linear regression model. 
     We are looking for variables that are highly correlated with the target 
-    variable.
+    variable but not collinear.
     Returns a list of positively correlated variables and a list of 
     negatively correlated variables. Also plots the heatmap, pair plots, 
-    and prints the results.
+    and prints the results summary.
     """
     import seaborn as sns
     sns.set(rc={'figure.figsize':(15, 15)})
@@ -93,15 +94,13 @@ def lr_linear (fsm):
     return rainbow_statistic,rainbow_p_value
 
 
-def lr_normality (fsm):
+def lr_qq (fsm):
     """
-    2. Normality
-
-    Linear regression assumes that the residuals are normally distributed. It is possible to check
+    2. Error Independence Assumption Check
+    This function performs a qq plot
+    Linear regression assumes that the residuals are independent. It is possible to check
     this qualitatively with a Q-Q plot. The fit model object has an attribute called resid, which is
     an array of the difference between predicted and true values. 
-
-    This function performs a qq plot
     """
     fsm_resids = fsm.resid
     import statsmodels.api as sm
@@ -111,25 +110,30 @@ def lr_normality (fsm):
 
 def lr_homoscad(fsm, df):
     """
-    Test Homoscadasticity: Use the predict() method now available to be called from the fsm variable to store the predictions
+    3. Homoscedasticity Assumption Check:
+    We want to make sure that the variance of our residuals is the same across our data.
+    This function outputs:
+    - A scatter plot of the residuals along the fitted data in order to visually
+    indicate how homoscedastic our residuals are. 
     """
+#     - Perfoms the Breusch-Pagan Lagrange Multiplier test for heteroscedasticity and outputs
+#     the results.
     fsm_resids = fsm.resid
     y_hat = fsm.predict()
     fig, ax = plt.subplots()
     ax.scatter(y_hat, fsm_resids)
     y = df.iloc[:,0]
-    lm, lm_p_value, fvalue, f_p_value = het_breuschpagan(y-y_hat, df.iloc[:, 1:])
-    print("Lagrange Multiplier p-value:", lm_p_value)
-    print("F-statistic p-value:", f_p_value)
-    print("\n")
-    print("The null hypothesis is homoscedasticity, alternative hypothesis is heteroscedasticity.\
-    Thus returning a low p-value means that the current model violates the homoscedasticity assumption")
+#     lm, lm_p_value, fvalue, f_p_value = het_breuschpagan(y-y_hat, df.iloc[:, 1:])
+#     print("Lagrange Multiplier p-value:", lm_p_value)
+#     print("F-statistic p-value:", f_p_value)
+#     print("\n")
+#     print("The null hypothesis is homoscedasticity, alternative hypothesis is heteroscedasticity.\
+#     Thus returning a low p-value means that the current model violates the homoscedasticity assumption")
     
 
 def lr_independence (df):
     """
     4. Independence
-
     The independence assumption means that the independent variables must not be too collinear.
     """
     from statsmodels.stats.outliers_influence import variance_inflation_factor
@@ -140,3 +144,32 @@ def lr_independence (df):
     print(vif_df) 
     print("\n")
     print("VIF needs to be smaller than 5.")
+    
+def rpt_iwfnt (srp_df):
+    srp_df = pd.merge(sales_and_res, parcels, on='PIN', how='inner', suffixes=('_sales', '_res'))
+    srp_df['is_waterfront'] = (srp_df['WfntLocation'] != 0).astype('int')
+    cat_dict = {0:'NOT WATERFRONT',1:'WATERFRONT'}
+    srp_df['is_waterfront'] = pd.Categorical(srp_df['is_waterfront'].map(cat_dict))
+    import matplotlib as mpl
+    import matplotlib.pylab as pylab
+    import seaborn as sns
+    params = {'legend.fontsize': 'medium',
+             'axes.labelsize': 'x-large',
+             'axes.titlesize':'x-large',
+             'xtick.labelsize':'large',
+             'ytick.labelsize':'large'}
+    pylab.rcParams.update(params)
+    sns.set_style({'font.family':'Gill Sans MT', 'font.sans-serif':['Gill Sans']})
+    sns.set(font_scale=2)
+    sns.set_style("whitegrid")
+    is_wfnt_labels = srp_df['is_waterfront'].unique()
+    fig = plt.figure(figsize=(8, 8))
+    axes = fig.add_subplot(111)
+    is_wfnt_boxplot = sns.boxplot(x=srp_df["is_waterfront"], y=srp_df["SalePrice"], data=srp_df,  ax=axes).set(
+        xlabel=None, 
+        ylabel='Sale Price'
+    )
+    fig.suptitle('2019 Waterfront Residential Housing Sale Price', fontsize=36)
+
+    sns.set_style({'font.family':'Gill Sans MT', 'font.sans-serif':['Gill Sans']})
+    axes.get_yaxis().set_major_formatter(mpl.ticker.FuncFormatter(lambda y, p: format(int(y), ',')))
