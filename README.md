@@ -10,7 +10,6 @@
  * [Data](https://github.com/chum46/mod2_housing_sales#data)
  * [Process](https://github.com/chum46/mod2_housing_sales#process)
  * [Results](https://github.com/chum46/mod2_housing_sales#results)
- * [Strengths and Limitations]
  * [Real World Application](https://github.com/chum46/mod2_housing_sales#application)
  * [Next Steps](https://github.com/chum46/mod2_housing_sales#next-steps)
 <!--te-->
@@ -24,7 +23,6 @@
 │   ├── exploratory
 │   │   ├── 00_mef_initial_data_cleaning.ipynb
 │   │   ├── 01_cm_waterfront_analysis.ipynb
-│   │   ├── 02_cm_download_and_explore_data.ipynb
 │   │   ├── 02_js_2experimenting\ models.ipynb
 │   │   ├── 02_js_Lookup\ info.ipynb
 │   │   ├── 02_js_Zero_explanation.ipynb
@@ -33,12 +31,23 @@
 │   │   ├── 02_js_exploratory_question_2.ipynb
 │   │   ├── 02_js_exploratory_questions_1.ipynb
 │   │   ├── 03_mef_noise_correlation.ipynb
+│   │   └── fsm.ipynb
 │   └── report
-│       └── 00_final_report_and_summary.ipynb
+│       ├── 00_cm_final_report_and_summary.ipynb
+│       ├── 00_final_report_and_summary.ipynb
+│       ├── 00_mef_final_report_and_summary.ipynb
+│       ├── 02_js_Porch_Visualization.ipynb
+│       └── 02_js_Question_2_report.ipynb
 ├── references
+│   └── README.md
 ├── reports
 │   ├── Mod2_Presentation.pdf
 │   └── figures
+│       ├── GPorch.png
+│       ├── is_wfnt_boxplot.png
+│       ├── qq_plot.png
+│       ├── reg_plot.png
+│       └── wfnt_loc_boxplot.png
 └── src
     ├── cm_functions.py
     └── data_cleaning.py
@@ -210,8 +219,39 @@ When looking at the correlation between sale price and porch there seems to be a
 
 # 4. Final Model
 
+Normalizing the Sales Data Based on the distribution plot we recieved after the final filter was applied, we are still not operating on a normal distribution. The following steps will be performed here simply as a means of demonstrating the process that will be used with each iteration of our model testing. We will log-transform the sales data and along with the non-binary independent variables assign those values to their own respective columns:
+
+Our Rsquared: 0.367905842822869
+
+##### 1. Linearity:
+
+Rainbow statistic: 0.9901818433274027
+Rainbow p-value: 0.6686303798428017
+
+The null hypothesis is that the model is linear, alternative hypothesis is that it is not. Because our p-value is not below the standard alpha level, the current model does not violate the linearity assumption.
+
+##### 2. Error Independence: 
 
 ##### Figure 4 above
+
+Visually our qq plot is much more linear than our initial model, although it is not completely linear. 
+
+##### 3. Normality of Errors
+
+Linear regression assumes that the residuals are normally distributed.The quantitative Jarque-Bera test is performed automatically as part of the model summary output, labeled Jarque-Bera (JB) and Prob(JB).
+
+    Jarque-Bera (JB): 1008.174
+    Prob(JB): 1.20e-219
+
+While this test shows violation of this assumption given the low Prob(JB), we are closer to meeting this assumption. 
+
+#### 4. Homoscedasticity
+
+We want to make sure that the variance of our residuals is the same across our data. A scatter plot of the residuals along the fitted data in order to visually indicate how homoscedastic our residuals are. This also looks better visually as our base model.
+
+#### 5. Multicollinearity
+
+Our VIF tests showed our independent variables were not dependant on each other with a VIF score of below 5 on each. 
 
 # Application
 
